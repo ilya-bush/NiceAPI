@@ -1,0 +1,4 @@
+name: NiceAPI
+version: '${version}'
+main: learn.code.niceapi.NiceAPI
+api-version: '1.20'
