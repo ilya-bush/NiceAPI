@@ -19,6 +19,11 @@ public class ChatUtil {
     }
 
     // Main Messages
+    public String playerNotOnlineMessage() { return getMessage("messages.player-not-online"); }
+    public String noPermissionMessage() { return getMessage("messages.no-permission"); }
+    public String notPlayerMessage() { return getMessage("messages.not-player"); }
+
+    // Bow Command Messages
     public String givedBowMessage() { return getMessage("messages.gived-bow"); }
     public String giveOnJoinMessage() { return getMessage("messages.give-on-join"); }
     public String bowNameMessage() { return getMessage("messages.bow"); }
