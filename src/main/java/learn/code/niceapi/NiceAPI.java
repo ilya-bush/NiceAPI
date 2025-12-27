@@ -1,19 +1,27 @@
 package learn.code.niceapi;
 
+import learn.code.niceapi.utils.Logs;
+import static learn.code.niceapi.utils.Logs.log;
+
 import org.bukkit.plugin.java.JavaPlugin;
-import static learn.code.niceapi.utils.LogsUtil.log;
 
 public final class NiceAPI extends JavaPlugin {
+
     @Override
     public void onEnable() {
-        learn.code.niceapi.utils.LogsUtil.init(this.getLogger(), this.getName());
 
-        log("Enabled!");
-        log("Version: " + this.getDescription().getVersion());
+        // Logs util initialization
+        Logs.init(getComponentLogger(), getName());
+
+        log("<green>NiceAPI Enabled!");
+        log("<green>[NiceAPI] Version: " + getDescription().getVersion());
+
     }
 
     @Override
     public void onDisable() {
-        log("Disabled!");
+
+        log("NiceAPI Disabled!");
+
     }
 }
