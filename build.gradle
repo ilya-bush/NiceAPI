@@ -10,13 +10,16 @@ repositories {
         name = "papermc"
         url = uri("https://repo.papermc.io/repository/maven-public/")
     }
+    maven {
+        name = "jitpack"
+        url = ("https://jitpack.io")
+    }
 }
 
 dependencies {
 
     // PaperMC
     compileOnly "io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT"
-
 }
 
 def targetJavaVersion = 17
