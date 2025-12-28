@@ -4,10 +4,14 @@ import learn.code.niceapi.utils.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public class InventoryBuilder {
 
     public static Inventory createFromConfig(ConfigurationSection section) {
+
         String title = section.getString("title", "Меню");
         int size = section.getInt("size", 27);
 
@@ -19,10 +23,35 @@ public class InventoryBuilder {
                 ConfigurationSection itemData = itemsSection.getConfigurationSection(key);
                 if (itemData == null) continue;
 
-                int slot = itemData.getInt("slot", 0);
-                inv.setItem(slot, ItemBuilder.fromConfig(itemData));
+                ItemStack item = ItemBuilder.fromConfig(itemData);
+
+                if (itemData.isList("slot")) {
+
+                    List<Integer> slots = itemData.getIntegerList("slot");
+
+                    for (int s : slots) {
+
+                        if (s >= 0 && s < size) {
+
+                            inv.setItem(s, item);
+
+                        }
+
+                    }
+
+                } else {
+
+                    int slot = itemData.getInt("slot", 0);
+                    if (slot >= 0 && slot < size) {
+
+                        inv.setItem(slot, item);
+
+                    }
+
+                }
             }
         }
+
         return inv;
     }
 }
