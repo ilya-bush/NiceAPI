@@ -6,6 +6,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
 
 public class Color {
+
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
     public static @NotNull Component parse(@NotNull String message) {
