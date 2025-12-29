@@ -1,12 +1,16 @@
 package learn.code.niceapi.builder;
 
+import learn.code.niceapi.NiceAPI;
 import learn.code.niceapi.utils.Color;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +50,8 @@ public class ItemBuilder {
         return item;
     }
 
-    public static ItemStack fromConfig(ConfigurationSection section) {
+    public static ItemStack fromConfig(NiceAPI plugin, ConfigurationSection section) {
+
         Material mat = Material.matchMaterial(section.getString("material", "STONE"));
         if (mat == null) mat = Material.BARRIER;
 
@@ -55,6 +60,25 @@ public class ItemBuilder {
                 .lore(section.getStringList("lore"))
                 .hideAttributes(section.getBoolean("hide-attributes", false));
 
+        ///
+        String action = section.getString("action");
+
+        if (action != null) {
+
+            builder.setTag(plugin, "mainMenuAction", action);
+
+        }
+        ///
+
         return builder.build();
+
+    }
+
+    public ItemBuilder setTag(NiceAPI plugin, String key, String value) {
+
+        NamespacedKey nsk = new NamespacedKey(plugin, key);
+        meta.getPersistentDataContainer().set(nsk, PersistentDataType.STRING, value);
+        return this;
+
     }
 }

@@ -17,7 +17,7 @@ public class OpenMainMenu {
         if (section != null) {
 
             MenuHolder holder = new MenuHolder();
-            Inventory inv = InventoryBuilder.createFromConfig(section, holder);
+            Inventory inv = InventoryBuilder.createFromConfig(plugin, section, holder);
             holder.setInventory(inv);
             player.openInventory(inv);
 

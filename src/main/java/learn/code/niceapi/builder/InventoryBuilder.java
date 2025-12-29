@@ -1,9 +1,9 @@
 package learn.code.niceapi.builder;
 
+import learn.code.niceapi.NiceAPI;
 import learn.code.niceapi.utils.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class InventoryBuilder {
 
-    public static Inventory createFromConfig(ConfigurationSection section, InventoryHolder holder) {
+    public static Inventory createFromConfig(NiceAPI plugin, ConfigurationSection section, InventoryHolder holder) {
 
         String title = section.getString("title", "Menu");
         int size = section.getInt("size", 27);
@@ -25,7 +25,7 @@ public class InventoryBuilder {
                 ConfigurationSection itemData = itemsSection.getConfigurationSection(key);
                 if (itemData == null) continue;
 
-                ItemStack item = ItemBuilder.fromConfig(itemData);
+                ItemStack item = ItemBuilder.fromConfig(plugin, itemData);
 
                 if (itemData.isList("slot")) {
 

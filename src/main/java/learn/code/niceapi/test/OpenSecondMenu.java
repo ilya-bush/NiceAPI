@@ -16,7 +16,7 @@ public class OpenSecondMenu {
 
         if (section != null) {
 
-            Inventory inv = InventoryBuilder.createFromConfig(section, player);
+            Inventory inv = InventoryBuilder.createFromConfig(plugin, section, player);
             player.openInventory(inv);
 
         } else {
