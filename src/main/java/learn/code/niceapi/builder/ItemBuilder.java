@@ -3,6 +3,7 @@ package learn.code.niceapi.builder;
 import learn.code.niceapi.NiceAPI;
 import learn.code.niceapi.utils.Color;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,6 +16,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ItemBuilder {
+
+    private static NiceAPI plugin;
+
     private final ItemStack item;
     private final ItemMeta meta;
 
@@ -25,7 +29,7 @@ public class ItemBuilder {
 
     public ItemBuilder name(String text) {
         if (text != null) {
-            meta.displayName(Color.parse(text).decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+            meta.displayName(Color.parse(text).decoration(TextDecoration.ITALIC, false));
         }
         return this;
     }
@@ -33,7 +37,7 @@ public class ItemBuilder {
     public ItemBuilder lore(List<String> lines) {
         if (lines != null && !lines.isEmpty()) {
             List<Component> lore = lines.stream()
-                    .map(line -> Color.parse(line).decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false))
+                    .map(line -> Color.parse(line).decoration(TextDecoration.ITALIC, false))
                     .collect(Collectors.toList());
             meta.lore(lore);
         }
@@ -50,7 +54,7 @@ public class ItemBuilder {
         return item;
     }
 
-    public static ItemStack fromConfig(NiceAPI plugin, ConfigurationSection section) {
+    public static ItemStack fromConfig(ConfigurationSection section) {
 
         Material mat = Material.matchMaterial(section.getString("material", "STONE"));
         if (mat == null) mat = Material.BARRIER;

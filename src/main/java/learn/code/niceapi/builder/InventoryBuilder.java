@@ -12,7 +12,9 @@ import java.util.List;
 
 public class InventoryBuilder {
 
-    public static Inventory createFromConfig(NiceAPI plugin, ConfigurationSection section, InventoryHolder holder) {
+    private static NiceAPI plugin;
+
+    public static Inventory createFromConfig(ConfigurationSection section, InventoryHolder holder) {
 
         String title = section.getString("title", "Menu");
         int size = section.getInt("size", 27);
@@ -25,7 +27,7 @@ public class InventoryBuilder {
                 ConfigurationSection itemData = itemsSection.getConfigurationSection(key);
                 if (itemData == null) continue;
 
-                ItemStack item = ItemBuilder.fromConfig(plugin, itemData);
+                ItemStack item = ItemBuilder.fromConfig(section);
 
                 if (itemData.isList("slot")) {
 
