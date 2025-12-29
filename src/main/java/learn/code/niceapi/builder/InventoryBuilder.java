@@ -23,11 +23,14 @@ public class InventoryBuilder {
 
         ConfigurationSection itemsSection = section.getConfigurationSection("items");
         if (itemsSection != null) {
+
             for (String key : itemsSection.getKeys(false)) {
+
                 ConfigurationSection itemData = itemsSection.getConfigurationSection(key);
+
                 if (itemData == null) continue;
 
-                ItemStack item = ItemBuilder.fromConfig(section);
+                ItemStack item = ItemBuilder.fromConfig(itemData);
 
                 if (itemData.isList("slot")) {
 

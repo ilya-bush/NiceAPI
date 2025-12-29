@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'learn.code'
-version = '1.9'
+version = '1.9.1'
 
 repositories {
     maven {

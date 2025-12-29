@@ -5,12 +5,11 @@ import learn.code.niceapi.utils.Color;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +48,17 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder glowing(boolean glowing) {
+        if (glowing) {
+
+            meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+        }
+
+        return this;
+    }
+
     public ItemStack build() {
         item.setItemMeta(meta);
         return item;
@@ -64,25 +74,8 @@ public class ItemBuilder {
                 .lore(section.getStringList("lore"))
                 .hideAttributes(section.getBoolean("hide-attributes", false));
 
-        ///
-        String action = section.getString("action");
-
-        if (action != null) {
-
-            builder.setTag(plugin, "mainMenuAction", action);
-
-        }
-        ///
 
         return builder.build();
-
-    }
-
-    public ItemBuilder setTag(NiceAPI plugin, String key, String value) {
-
-        NamespacedKey nsk = new NamespacedKey(plugin, key);
-        meta.getPersistentDataContainer().set(nsk, PersistentDataType.STRING, value);
-        return this;
 
     }
 }
