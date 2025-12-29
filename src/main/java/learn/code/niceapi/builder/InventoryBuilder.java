@@ -3,19 +3,21 @@ package learn.code.niceapi.builder;
 import learn.code.niceapi.utils.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
 public class InventoryBuilder {
 
-    public static Inventory createFromConfig(ConfigurationSection section) {
+    public static Inventory createFromConfig(ConfigurationSection section, InventoryHolder holder) {
 
-        String title = section.getString("title", "Меню");
+        String title = section.getString("title", "Menu");
         int size = section.getInt("size", 27);
 
-        Inventory inv = Bukkit.createInventory(null, size, Color.parse(title));
+        Inventory inv = Bukkit.createInventory(holder, size, Color.parse(title));
 
         ConfigurationSection itemsSection = section.getConfigurationSection("items");
         if (itemsSection != null) {
@@ -47,7 +49,6 @@ public class InventoryBuilder {
                         inv.setItem(slot, item);
 
                     }
-
                 }
             }
         }

@@ -2,3 +2,7 @@ name: NiceAPI
 version: '${version}'
 main: learn.code.niceapi.NiceAPI
 api-version: '1.20'
+commands:
+  test:
+    description: Darova eba, test command
+    usage: /<command>
