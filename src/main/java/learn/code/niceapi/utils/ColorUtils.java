@@ -5,12 +5,13 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Color {
+public class ColorUtils {
 
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
     public static @NotNull Component parse(@NotNull String message) {
 
+        // MiniMessage deserializer
         return MINI_MESSAGE.deserialize(message);
 
     }

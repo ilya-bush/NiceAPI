@@ -12,7 +12,7 @@ repositories {
     }
     maven {
         name = "jitpack"
-        url = ("https://jitpack.io")
+        url = "https://jitpack.io"
     }
 }
 

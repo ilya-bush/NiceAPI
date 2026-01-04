@@ -5,7 +5,7 @@ import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Logs {
+public class LogsUtils {
 
     private static ComponentLogger logger;
     private static String prefix = "";
@@ -30,7 +30,7 @@ public class Logs {
 
         if (logger != null) {
 
-            logger.info(Color.parse(prefix + message));
+            logger.info(ColorUtils.parse(prefix + message));
 
         } else {
 
@@ -48,7 +48,7 @@ public class Logs {
 
         if (logger != null) {
 
-            logger.warn(Color.parse("<yellow>" + prefix + message));
+            logger.warn(ColorUtils.parse("<yellow>" + prefix + message));
 
         }
 
@@ -62,7 +62,7 @@ public class Logs {
 
         if (logger != null) {
 
-            logger.error(Color.parse("<red>" + prefix + message));
+            logger.error(ColorUtils.parse("<red>" + prefix + message));
 
         }
 
